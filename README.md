@@ -40,6 +40,11 @@ docker compose -f docker-compose.yaml up airflow-init
 docker compose -f docker-compose.yaml up -d
 ```
 
+Выключить:
+```bash
+docker compose -f docker-compose.yaml down
+```
+
 Airflow UI:
 
 - URL: `http://localhost:8080`
