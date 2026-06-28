@@ -25,6 +25,31 @@
         `-- metrics.sql
 ```
 
+## Лабораторная работа 2: запуск через Airflow
+
+В проект добавлен Airflow-стек:
+
+- `Dockerfile` - образ Airflow с Python-зависимостями проекта;
+- `docker-compose.yaml` - Airflow webserver/scheduler/dag-processor/triggerer, Postgres для метаданных Airflow и отдельный `warehouse-postgres` для аналитической БД;
+- `dags/ecommerce_retail_pipeline.py` - DAG, который выполняет существующий ETL: профилирование источника, загрузку raw, построение SQL-слоев и экспорт marts в Parquet.
+
+Запуск:
+
+```bash
+docker compose -f docker-compose.yaml up airflow-init
+docker compose -f docker-compose.yaml up -d
+```
+
+Airflow UI:
+
+- URL: `http://localhost:8080`
+- login: `admin`
+- password: `admin`
+
+В интерфейсе нужно запустить DAG `ecommerce_retail_analytics_pipeline`.
+
+Хранилище витрин доступно внутри Docker-сети как `warehouse-postgres:5432`, а с хоста как `localhost:5433`.
+
 ## Запуск
 
 1. Установить зависимости:

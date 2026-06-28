@@ -4,3 +4,5 @@ __pycache__/
 .venv/
 venv/
 pg_data/
+logs/
+plugins/
